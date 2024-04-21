@@ -29,17 +29,66 @@
     </nav>
     <section id="introduction">
         <h2>Introduction</h2>
-        <p>GreenPlate is dedicated to promoting sustainable food management, helping users enhance their eating and shopping habits towards sustainability.</p>
+        <p>Our project, "GreenPlate," is a sustainable food management system designed to effectively promote sustainable 
+            eating and shopping habits. By minimizing food waste and encouraging the efficient use of resources, 
+            GreenPlate aims to help users adopt a more sustainable lifestyle. The application provides functionality 
+            for users to track their daily calorie intake, manage recipes, monitor ingredient quantities, and generate 
+            optimized shopping lists. Through these features, GreenPlate allows users to make informed decisions about 
+            their food consumption and shopping, contributing positively to environmental sustainability. In an era where 
+            the world wastes over 2.5 billion tons of food a year, sustainability is crucial, and managing food resources 
+            efficiently is imperative. GreenPlate addresses this by integrating tools that assist users in planning their 
+            meals and shopping trips to reduce waste and maximize the use of available resources. By promoting practices 
+            that support sustainability, GreenPlate plays a pivotal role in fostering responsible consumer habits, which 
+            are essential for the long-term health of our planet.</p>
     </section>
     <section id="design">
         <h2>Design & Architecture</h2>
-        <p>Explore the architectural design and design patterns that underpin our project, with UML diagrams to visually represent our application's structure.</p>
+        <p>The architecture of GreenPlate is built on the Model-View-ViewModel (MVVM) pattern, which facilitates a clear 
+            separation of concerns and enhances the maintainability and scalability of the application. This architectural 
+            choice is ideal for handling the dynamic features provided by GreenPlate. Several design patterns are employed 
+            to ensure the robustness and flexibility of the application:</p>
+        <ul>
+            <li>Singleton: Used for managing user sessions, ensuring that only one user instance is active at any given time.</li>
+            <li>Strategy: Allows for flexible sorting mechanisms in recipe management, where different sorting strategies can be applied dynamically.</li>
+            <li>Factory: Used for creating instances of various models and views, simplifying the management of these components.</li>
+        </ul>
         <!-- Insert UML Diagram Images Here -->
+        <h3>UML Diagrams</h3>
+        <ul>
+            <li>This Design Class Diagram (DCD) provides an overview of the classes and relationships in the "GreenPlate" app.</li>
+            <ol>
+                <li>User Class: Central to the application, it includes attributes for username, password, height, weight, and gender. It's implemented as a Singleton, meaning only one instance exists at any given time, ensuring consistency across the application.</li>
+                <li>LoginViewModel: Manages the login functionality with methods like `onLoginClicked()` and properties such as `user`, `successMessage`, and `errorMessage`. It validates input data and interacts with the `User` class.</li>
+                <li>AccountCreationViewModel: Handles new account creation, validating input data and creating new user accounts. It utilizes the `User` class for account information.</li>
+                <li>MealInfo Class: Represents the details of a meal, including name, calories, and date.</li>
+                <li>InputMealViewModel: Processes meal input, verifying the validity of the data entered against the `MealInfo` class.</li>
+                <li>IngredientsModel: Contains information about individual ingredients such as name, quantity, calories, and expiration date.</li>
+                <li>IngredientsViewModel: Manages ingredient-related operations, like checking for ingredient existence, with a callback interface `IngredientCheckCallback` for response handling.</li>
+                <li>RecipeModel: Represents a recipe with attributes like name, a map of ingredients and their quantities, and a flag indicating if there are enough ingredients for the recipe.</li>
+                <li>RecipeViewModel: Manages recipe operations and interacts with the `RecipeModel`. It uses the Firebase database for storage and retrieval of recipe data. </li>
+                <li>`db` (FirebaseDatabase instance) and `root` (DatabaseReference) are initialized using the Singleton pattern in `IngredientsViewModel` and `RecipeViewModel`. This ensures a single reference point for database operations related to ingredients and recipes.</li>
+            </ol>
+            <li>Strategy: Allows for flexible sorting mechanisms in recipe management, where different sorting strategies can be applied dynamically.</li>
+            <li>Factory: Used for creating instances of various models and views, simplifying the management of these components.</li>
+        </ul>
+
     </section>
     <section id="ui">
         <h2>User Interface</h2>
-        <p>Take a visual tour of our app through screenshots of various screens, highlighting main functionalities and interaction flow.</p>
+        <p>GreenPlate's user interface is designed with intuitiveness and ease of use in mind. The UI employs a simple yet effective layout that guides users through the functionalities seamlessly.</p>
+        <ul>
+            <li>Meal Logging: Users can log their meals, including details such as calorie count and ingredients used.</li>
+            <li>Recipe Management: Allows users to create, store, and manage recipes with an integrated ingredient inventory system.</li>
+            <li>Shopping List Generation: Automatically populates shopping lists based on the ingredients needed for upcoming meals.</li>
+        </ul>
         <!-- Insert Screenshots Here -->
+        <ul>
+            <li>Welcome Screen: The first screen users see when they open the app, providing options to either start using the app or exit.</li>
+            <li>Meal Input Screen: Where users can enter meal details for tracking.</li>
+            <li>Recipe Screen: Displays stored recipes and allows for the addition of new ones.</li>
+            <li>Shopping List Screen: Shows the ingredients needed for the selected recipes, highlighting what needs to be purchased.</li>
+        </ul>
+        <p>These screenshots not only demonstrate our app’s features but also highlight the user-friendly design and logical flow between different functionalities.</p>
     </section>
     <section id="functionality">
         <h2>Functionality</h2>
@@ -48,7 +97,23 @@
     </section>
     <section id="conclusion">
         <h2>Conclusions and Reflections/Learning</h2>
-        <p>Reflect on the project outcomes, detailing contributions, challenges, and knowledge gained throughout the development process.</p>
+        <p>GreenPlate stands at the intersection of technology and sustainability, providing a tool that not only aids individual 
+            users in managing their dietary habits but also promotes broader environmental responsibility. Through its thoughtful 
+            design and strategic implementation, GreenPlate is poised to make a significant impact on sustainable food management.</p>
+        <h3>Reflections from contributors: </h3>
+        <p>Tanvi - Having never worked with databases or Android Studio before, this project was definitely a challenge but I gained a 
+            lot from it. I had also never really worked in a team trying to get a deliverable with hard deadlines, so that was also a 
+            learning experience. I enhanced my skills in using MVVM architecture, understanding the nuances of Firebase integration, and 
+            applying design patterns like Singleton and Strategy for a scalable and maintainable codebase. </p>
+        <p>Shriya - I have also never worked with Firebase or Android Studio before, so there was a significant learning curve for me, but 
+            after doing four sprints, I feel like I have a solid understanding of the concepts we implemented. I feel confident in my ability 
+            to complete tasks for sprints without any external assistance. I also learned a lot about using Git in a real project setting; although 
+            I knew the commands prior to this class, I actually feel comfortable using them now.  </p>
+        <p>Nandita - This project was the first time that I had used or implemented Firebase in a project to store data. I’ve used Android Studio before, 
+            but having this comprehensive and thorough understanding of MVVM architecture that I’ve gained from this class will help me become a better 
+            technological developer moving forward. Additionally, I gained critical skills associated with utilizing Git and handling merge conflicts, 
+            which is especially important to industry-level applications. After this class, I feel more comfortable utilizing and applying design patterns, 
+            utilizing git, android studio, and firebase in real-world projects.</p>
     </section>
     <section id="contributors">
         <h2>Contributors</h2>
