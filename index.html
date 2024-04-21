@@ -5,12 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenPlate: A Sustainable Food Management System</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        header, section, footer { margin: 20px; padding: 20px; border: 1px solid #ccc; }
-        nav ul { list-style-type: none; padding: 0; }
-        nav ul li { display: inline; margin-right: 10px; }
-        a { text-decoration: none; color: blue; }
-        a:hover { text-decoration: underline; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f9f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header, section, footer {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 100, 0, 0.1);
+        }
+        nav {
+            background-color: #006400;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%; /* Ensures that images are not too large */
+            height: auto;
+            display: block; /* Centers images in their containers */
+            margin: 10px auto;
+        }
     </style>
 </head>
 <body>
@@ -56,34 +93,10 @@
         <h3>UML Diagrams</h3>
         <ul>
             <li>This Design Class Diagram (DCD) provides an overview of the classes and relationships in the "GreenPlate" app.</li>
-            <ol>
-                <li>User Class: Central to the application, it includes attributes for username, password, height, weight, and gender. It's implemented as a Singleton, meaning only one instance exists at any given time, ensuring consistency across the application.</li>
-                <li>LoginViewModel: Manages the login functionality with methods like `onLoginClicked()` and properties such as `user`, `successMessage`, and `errorMessage`. It validates input data and interacts with the `User` class.</li>
-                <li>AccountCreationViewModel: Handles new account creation, validating input data and creating new user accounts. It utilizes the `User` class for account information.</li>
-                <li>MealInfo Class: Represents the details of a meal, including name, calories, and date.</li>
-                <li>InputMealViewModel: Processes meal input, verifying the validity of the data entered against the `MealInfo` class.</li>
-                <li>IngredientsModel: Contains information about individual ingredients such as name, quantity, calories, and expiration date.</li>
-                <li>IngredientsViewModel: Manages ingredient-related operations, like checking for ingredient existence, with a callback interface `IngredientCheckCallback` for response handling.</li>
-                <li>RecipeModel: Represents a recipe with attributes like name, a map of ingredients and their quantities, and a flag indicating if there are enough ingredients for the recipe.</li>
-                <li>RecipeViewModel: Manages recipe operations and interacts with the `RecipeModel`. It uses the Firebase database for storage and retrieval of recipe data. </li>
-                <li>`db` (FirebaseDatabase instance) and `root` (DatabaseReference) are initialized using the Singleton pattern in `IngredientsViewModel` and `RecipeViewModel`. This ensures a single reference point for database operations related to ingredients and recipes.</li>
-            </ol>
-            <li>We created two Sequence Diagrams (SDs) in order to visually represent two different use-case scenarios. </li>
-            <ol>
-                <li>Scenario 1: The scenario we chose to model for the first sequence diagram is that the user has already created an account in the application and uses their credentials to log into the application and they are directed to the home screen. This use case would occur for any user that has previously created an account and will be directed to the home screen if they have logged in successfully. If the user has not logged in successfully (their credentials are invalid/incorrect) they will stay on the login screen and an “authentication failed” toast message will pop up. The SD incorporates the following 3 classes/modules: LoginPage, Firebase, Home Screen. Both an OPT and ALT structure are present in the SD as the opt occurs if the user presses the login button and the ALT indicates the paths of actions if the user’s authentication was successful or not.</li>
-                <li> <img src="images/sd1.png" alt="black and white sequence diagram for first use case"> </li>
-                <li>Scenario 2: Another scenario we had chosen to model with the sequence diagram is that the user is using a certain ingredient to make a dish. The user is on the home screen and navigates to the ingredients screen. Then the user presses the decrease button next to the label of their selected food and then the quantity decreases. If the quantity of their selected ingredient is > 0, a success message occurs, and the quantity is decremented in the pantry database and populates on the screen. Otherwise, if the quantity of their selected ingredient is zero, the ingredient is removed from the pantry database as an entry and is removed from the screen.</li>
-                <li> <img src="images/sd2.png" alt="white and black sequence diagram for second use case"> </li>
-            </ol>
-            <li>We created a System Sequence Diagram (SSD) where the system is treated as a black box for the third use case: </li>
-            <ol>
-                <li><li> <img src="images/ssd.png" alt="black and white system sequence diagram for second use case"> </li></li>
-                <li>Main Success Scenario: The User opens the account creation screen to create a new account and enters their email address in the 'Email' field and enters their password in the 'Password' field. The User then taps the 'Create Account' button. The system calls the createAccount method with the entered email and password, validates the input, and attempts to create a new user account with the provided credentials. If account creation is successful, the system displays a message "Account successfully created." to the User. The User is now able to log in with their new credentials.</li>
-                <li>Alternative Flows: If the system fails to create a new account (due to a network issue, duplicate email, or other reasons), it displays a message "Authentication failed." to User.</li>
-
-            </ol>
+            <li><img src="images/sd1.png" alt="Sequence diagram for user login scenario" style="width: 90%; max-width: 600px;"></li>
+            <li><img src="images/sd2.png" alt="Sequence diagram for ingredient decrement scenario" style="width: 90%; max-width: 600px;"></li>
+            <li><img src="images/ssd.png" alt="System sequence diagram for account creation" style="width: 90%; max-width: 600px;"></li>
         </ul>
-
     </section>
     <section id="ui">
         <h2>User Interface</h2>
@@ -126,10 +139,6 @@
             technological developer moving forward. Additionally, I gained critical skills associated with utilizing Git and handling merge conflicts, 
             which is especially important to industry-level applications. After this class, I feel more comfortable utilizing and applying design patterns, 
             utilizing git, android studio, and firebase in real-world projects.</p>
-        <p>Although I have had prior work experience with Android Studio and Git, I have definitely expanded on my skills through this project. I now have 
-            a more concrete understanding of app development through working with the MVVM architecture and utilizing design patterns. By working with 
-            Firebase for the first time, I learned how to integrate our app with the Firebase to store information inputted by the user. I am confident 
-            in applying all the skills I’ve learned in this class in future internships and the industry.</p>
     </section>
     <section id="contributors">
         <h2>Contributors</h2>
